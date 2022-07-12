@@ -1,0 +1,91 @@
+<app-breadcrumb [title]="product?.title" [breadcrumb]="'Products'"></app-breadcrumb>
+<!-- section start -->
+<section class="section-b-space">
+  <div class="collection-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 col-sm-12 col-xs-12">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="filter-main-btn mb-2">
+                  <span class="filter-btn" (click)="toggleMobileSidebar()">
+                    <i class="fa fa-bars" aria-hidden="true"></i> sidebar
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <owl-carousel-o [options]="ProductDetailsMainSliderConfig" #owlCar  class="product-slick">
+                    <ng-container *ngFor="let image of product?.images; index as i">
+                        <ng-template carouselSlide [id]="i">
+                            <div>
+                              <img [defaultImage]="'assets/images/product/placeholder.jpg'" 
+                                   [lazyLoad]="image.src" 
+                                   [alt]="image.alt" class="img-fluid">
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                </owl-carousel-o>
+                <div class="col-12 p-0" *ngIf="product?.images.length > 1">
+                    <div class="slider-nav">
+                        <owl-carousel-o [options]="ProductDetailsThumbConfig" class="product-slick">
+                            <ng-container *ngFor="let image of product?.images; index as i">
+                                <ng-template carouselSlide [id]="i">
+                                    <div class="owl-thumb" [class.active]="i == activeSlide">
+                                      <img [defaultImage]="'assets/images/product/placeholder.jpg'" 
+                                           [lazyLoad]="image.src" 
+                                           [alt]="image.alt" class="img-fluid" 
+                                           (click)="owlCar.to(activeSlide = i.toString())">
+                                    </div>
+                                </ng-template>
+                            </ng-container>
+                        </owl-carousel-o>
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-6 rtl-text">
+                <div class="product-right">
+                  <h2>{{ product?.title }}</h2>
+                  <h3>
+                      $ {{ (product?.price) }}
+                  </h3>
+                  <div class="product-description border-product">
+                    <h5 class="avalibility" *ngIf="counter <= product.stock"><span>In Stock</span></h5>
+                    <h5 class="avalibility" *ngIf="counter > product.stock"><span>Out of Stock</span></h5>
+                    <h6 class="product-title">quantity</h6>
+                    <div class="qty-box">
+                      <div class="input-group">
+                        <span class="input-group-prepend">
+                          <button type="button" class="btn quantity-left-minus" data-type="minus" (click)="decrement()">
+                            <i class="ti-angle-left"></i>
+                          </button>
+                        </span>
+                        <input type="text" name="quantity" class="form-control input-number" [value]="counter" disabled/>
+                        <span class="input-group-prepend">
+                          <button type="button" class="btn quantity-right-plus" data-type="plus" (click)="increment()">
+                            <i class="ti-angle-right"></i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-buttons">
+                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock" (click)="addToCart(product)">add to cart</a>
+                    <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock" (click)="enquire(product)">Enquire</a>
+                  </div>
+                  <div class="border-product">
+                    <h6 class="product-title">product details</h6>
+                    <p>{{ product.description.substring(0, 200)+'...' }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section ends -->
