@@ -6,7 +6,7 @@
 	<div class="front">
         <a [routerLink]="['/product/detail/', product.title.replace(' ', '-')]">
             <img [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'" 
-                 [lazyLoad]="ImageSrc ? ImageSrc : product.images[0].src" 
+                 [lazyLoad]="ImageSrc ? ImageSrc : product.image" 
                  class="img-fluid lazy-loading" alt="">
         </a>
 	</div>
@@ -17,7 +17,7 @@
         <button title="Add to cart" (click)="addToCart(product)" *ngIf="!cartModal">
             <i class="ti-shopping-cart"></i>
         </button>
-		<a href="javascript:void(0)" title="Add to Wishlist" (click)="addToWishlist(product)">
+		<a href="javascript:void(0)" title="Add to Wishlist" >
             <i class="ti-heart" aria-hidden="true"></i>
         </a>
 		<a href="javascript:void(0)" title="Quick View" (click)="QuickView.openModal()">

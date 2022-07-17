@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Product } from "../../shared/classes/product";
 import { ProductService } from "../../shared/services/product.service";
 import { OrderService } from "../../shared/services/order.service";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-checkout',
@@ -20,17 +21,18 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     public productService: ProductService,
-    private orderService: OrderService) { 
+    private orderService: OrderService,
+    private toastrService: ToastrService) { 
     this.checkoutForm = this.fb.group({
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-      lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
+      lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]')]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
-      country: ['', Validators.required],
-      town: ['', Validators.required],
-      state: ['', Validators.required],
-      postalcode: ['', Validators.required]
+      // country: ['', Validators.required],
+      // town: ['', Validators.required],
+      // state: ['', Validators.required],
+      // postalcode: ['', Validators.required]
     })
   }
 
@@ -43,8 +45,24 @@ export class CheckoutComponent implements OnInit {
   public get getTotal(): Observable<number> {
     return this.productService.cartTotalAmount();
   }
-  stripeCheckout() {
+
+  submitEnquiry(){
+    const selectedProdIds = this.products.map(product=> product._id);
+    const formValues = this.checkoutForm.value
+    const data = {
+      first_name: formValues.firstname,
+      last_name: formValues.lastname,
+      email: formValues.email,
+      address: formValues.address,
+      phone: formValues.phone,
+      product_ids: selectedProdIds
+    }
+    this.productService.submitEnquiry(data).subscribe(res=>{
+      localStorage.setItem("cartItems", JSON.stringify([]))
+      this.toastrService.success('Enquiry Submitted');
+    })
   }
+
   private initConfig(): void {
   }
 

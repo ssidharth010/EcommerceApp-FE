@@ -10,7 +10,7 @@
                         </button>
                         <div class="media">
                             <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">
-                                <img class="img-fluid pro-img" [src]="product.images[0].src" [alt]="product.images[0].alt">
+                                <img class="img-fluid pro-img" [src]="product.image" [alt]="product.image">
                             </a>
                             <div class="media-body align-self-center text-center">
                                 <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">
@@ -22,7 +22,7 @@
                                 </a>
                                 <div class="buttons">
                                     <a [routerLink]="['/shop/cart']" class="view-cart btn btn-solid">Your cart</a>
-                                    <a [routerLink]="['/shop/checkout']" class="checkout btn btn-solid">Check out</a>
+                                    <a [routerLink]="['/shop/enquire']" class="checkout btn btn-solid">Check out</a>
                                     <a [routerLink]="['/shop/collection/left/sidebar']" class="continue btn btn-solid">Continue shopping</a>
                                 </div>
 
@@ -42,7 +42,7 @@
                                         <div class="img-wrapper">
                                             <div class="front">
                                                 <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">
-                                                    <img [src]="product.images[0].src" class="img-fluid mb-1" alt="">
+                                                    <img [src]="product.image" class="img-fluid mb-1" alt="">
                                                 </a>
                                             </div>
                                             <div class="product-detail">

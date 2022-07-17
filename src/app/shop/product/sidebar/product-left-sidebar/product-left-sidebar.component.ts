@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../../shared/data/slider';
 import { Product } from '../../../../shared/classes/product';
 import { ProductService } from '../../../../shared/services/product.service';
@@ -25,7 +25,12 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router,
     public productService: ProductService) { 
-      this.route.data.subscribe(response => this.product = response.data );
+      this.route.data.subscribe(response => {
+        this.product = response.data
+        if(!this.product){
+          // this.router.navigateByUrl('/404', { skipLocationChange: true });
+        }
+      });
     }
 
   ngOnInit(): void {
@@ -68,19 +73,16 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   // Add to cart
-  async addToCart(product: any) {
+  addToCart(product: any) {
     product.quantity = this.counter || 1;
-    const status = await this.productService.addToCart(product);
-    if(status)
-      this.router.navigate(['/shop/cart']);
+    this.productService.addToCart(product);
+    this.router.navigate(['/product/cart']);
   }
 
   // Buy Now
   async enquire(product: any) {
     product.quantity = this.counter || 1;
-    const status = await this.productService.addToCart(product);
-    if(status)
-      this.router.navigate(['/product/enquire']);
+    this.router.navigate(['/product/cart']);
   }
 
   // Add to Wishlist

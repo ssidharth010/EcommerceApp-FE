@@ -5,17 +5,17 @@
       <span class="lable4" *ngIf="product.sale">on sale</span>
     </div> -->
     <div class="front">
-      <a [routerLink]="['/product/detail/', product.title.replace(' ', '-')]">
+      <a [routerLink]="['/product/detail/', product._id]">
         <img 
           [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'" 
-          [lazyLoad]="ImageSrc ? ImageSrc : product.images[0].src" 
+          [lazyLoad]="ImageSrc ? ImageSrc : product.image" 
           class="img-fluid lazy-loading" 
-          alt="{{ product.images[0].alt }}" />
+          alt="{{ product.image }}" />
       </a>
     </div>
     <div class="back" *ngIf="onHowerChangeImage">
-      <a [routerLink]="['/product/detail/', product.title.replace(' ', '-')]">
-        <img [src]="ImageSrc ? ImageSrc : product.images[1].src" class="img-fluid lazy-loading" alt="{{ product.images[1].alt }}">
+      <a [routerLink]="['/product/detail/', product._id]">
+        <img [src]="ImageSrc ? ImageSrc : product.image" class="img-fluid lazy-loading" alt="image">
       </a>
     </div>
     <ul class="product-thumb-list" *ngIf="thumbnail">
@@ -26,15 +26,14 @@
       </li>
     </ul>
     <div class="cart-info cart-wrap">
-      <a href="javascript:void(0)" title="Add to cart" (click)="CartModal.openModal(product)"
+      <!-- <a href="javascript:void(0)" title="Add to cart" (click)="CartModal.openModal(product)"
         *ngIf="cartModal">
         <i class="ti-shopping-cart"></i>
-      </a>
-      <a href="javascript:void(0)" title="Add to cart" (click)="addToCart(product)"
-        *ngIf="!cartModal">
+      </a> -->
+      <a href="javascript:void(0)" title="Add to cart" (click)="addToCart(product)">
         <i class="ti-shopping-cart"></i>
       </a>
-      <a href="javascript:void(0)" title="Add to Wishlist" (click)="addToWishlist(product)">
+      <a href="javascript:void(0)" title="Add to Wishlist">
         <i class="ti-heart" aria-hidden="true"></i>
       </a>
       <a href="javascript:void(0)" title="Quick View" (click)="QuickView.openModal()">
@@ -44,7 +43,7 @@
   </div>
   <div class="product-detail">
     <div>
-      <a [routerLink]="['/product/detail/', product?.title.replace(' ', '-')]">
+      <a [routerLink]="['/product/detail/', product?._id]">
         <h6>{{ product?.title | titlecase }}</h6>
       </a>
       <p>{{ product?.description }}</p>

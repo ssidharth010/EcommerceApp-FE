@@ -2,7 +2,6 @@ import { Component, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { map, delay, withLatestFrom } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +17,7 @@ export class AppComponent {
     map(v => v[1]),
   );
   
-  constructor(@Inject(PLATFORM_ID) private platformId: Object,
-    private loader: LoadingBarService, translate: TranslateService) {
-    if (isPlatformBrowser(this.platformId)) {
-      translate.setDefaultLang('en');
-      translate.addLangs(['en', 'fr']);
-    }
+  constructor( private loader: LoadingBarService) {
   }
 
 }

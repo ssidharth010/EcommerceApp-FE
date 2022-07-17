@@ -32,7 +32,7 @@ export class ProductService {
 
   // Product
   private get products(): Observable<Product[]> {
-    this.Products = this.http.get<Product[]>('assets/data/products.json').pipe(map(data => data));
+    this.Products = this.http.get<Product[]>('products/list').pipe(map((res:any) => res.data));
     this.Products.subscribe(next => { localStorage['products'] = JSON.stringify(next) });
     return this.Products = this.Products.pipe(startWith(JSON.parse(localStorage['products'] || '[]')));
   }
@@ -49,6 +49,20 @@ export class ProductService {
         return item.title.replace(' ', '-') === slug; 
       }); 
     }));
+  }
+
+  getAllProducts():  Observable<Product[]>{
+    return this.http.get('products/list').pipe(map((res: any)=>res.data));
+  }
+
+  getProductById(id:string):  Observable<Product>{
+    return this.http.get(`products/${id}`).pipe(map((res: any)=>res.data));
+  }
+
+  // Enquiry
+
+  submitEnquiry(data):  Observable<Product>{
+    return this.http.post(`enquiries/add`, data)
   }
 
 
@@ -141,7 +155,7 @@ export class ProductService {
 
   // Add to Cart
   public addToCart(product): any {
-    const cartItem = state.cart.find(item => item.id === product.id);
+    const cartItem = state.cart.find(item => item._id === product._id);
     const qty = product.quantity ? product.quantity : 1;
     const items = cartItem ? cartItem : product;
     const stock = this.calculateStockCounts(items, qty);
@@ -159,6 +173,7 @@ export class ProductService {
 
     this.OpenCart = true; // If we use cart variation modal
     localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    this.toastrService.success('Product has been added to cart.');
     return true;
   }
 

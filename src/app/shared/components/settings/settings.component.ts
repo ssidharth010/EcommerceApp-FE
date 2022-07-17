@@ -1,7 +1,6 @@
 import { Component, OnInit, Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../classes/product";
 
@@ -42,7 +41,6 @@ export class SettingsComponent implements OnInit {
   }]
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
-    private translate: TranslateService,
     public productService: ProductService) {
     this.productService.cartItems.subscribe(response => this.products = response);
   }
@@ -52,12 +50,6 @@ export class SettingsComponent implements OnInit {
 
   searchToggle(){
     this.search = !this.search;
-  }
-
-  changeLanguage(code){
-    if (isPlatformBrowser(this.platformId)) {
-      this.translate.use(code)
-    }
   }
 
   get getTotal(): Observable<number> {

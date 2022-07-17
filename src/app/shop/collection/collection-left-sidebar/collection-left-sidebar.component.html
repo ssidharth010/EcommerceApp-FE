@@ -35,18 +35,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <ul class="product-filter-tags">
-                                    <li class="mr-1" *ngFor="let tag of tags">
-                                        <a href="javascript:void(0)" class="filter_tag">
-                                            {{tag}} <i class="ti-close" (click)="removeTag(tag)"></i>
-                                        </a>
-                                    </li>
-                                    <li class="clear_filter" *ngIf="tags.length > 0">
-                                        <a href="javascript:void(0)" class="clear_filter" (click)="removeAllTags()">
-                                            Clear all
-                                        </a>
-                                    </li>
-                                </ul>
                                 <div class="collection-product-wrapper" id="products">
                                     <app-grid [products]="products" [paginate]="paginate" [layoutView]="layoutView" [sortBy]="sortBy" (setGrid)="updateGridLayout($event)" (setLayout)="updateLayoutView($event)" (sortedBy)="sortByFilter($event)">
                                     </app-grid>

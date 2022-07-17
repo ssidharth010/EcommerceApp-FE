@@ -23,7 +23,7 @@
             <tr>
               <td>
                   <a [routerLink]="['/shop/product/left/sidebar/', product.title.replace(' ', '-')]">
-                    <img [src]="product.images[0].src" [alt]="product.images[0].alt">
+                    <img [src]="product.image" [alt]="product.image">
                   </a>
               </td>
               <td>
@@ -72,8 +72,8 @@
     </div>
     <div class="row wishlist-buttons" *ngIf='products.length'>
       <div class="col-12">
-        <a [routerLink]="['/shop/collection/left/sidebar']" class="btn btn-solid">continue shopping</a>
-        <a [routerLink]="['/shop/checkout']" class="btn btn-solid">check out</a>
+        <a [routerLink]="['/product/list']" class="btn btn-solid">Back</a>
+        <a [routerLink]="['/product/enquire']" class="btn btn-solid">Proceed to Enquiry</a>
       </div>
     </div>
   </div>

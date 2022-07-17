@@ -1,6 +1,7 @@
 // Products
 export interface Product {
     id?: number;
+    _id?: number;
     title?: string;
     description?: string;
     type?: string;
@@ -16,6 +17,7 @@ export interface Product {
     tags?: any[];
     variants?: Variants[];
     images?: Images[];
+    image?: Images;
 }
 
 export interface Variants {

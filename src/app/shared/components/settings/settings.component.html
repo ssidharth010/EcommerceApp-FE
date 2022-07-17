@@ -15,7 +15,7 @@
         <li *ngFor="let product of products">
           <div class="media">
             <a [routerLink]="['product/left/sidebar/', product.title.replace(' ', '-')]">
-              <img class="mr-3" [src]="product?.images[0].src" [alt]="product?.images[0].alt">
+              <img class="mr-3" [src]="product?.image" [alt]="product?.image">
             </a>
             <div class="media-body">
               <a [routerLink]="['product/left/sidebar/', product.title.replace(' ', '-')]">
@@ -41,7 +41,7 @@
         <li>
           <div class="buttons">
             <a [routerLink]="['/product/cart']" class="view-cart">view cart</a>
-            <a [routerLink]="['/product/checkout']" class="checkout">checkout</a>
+            <a [routerLink]="['/product/enquire']" class="checkout">checkout</a>
           </div>
         </li>
       </ul>
