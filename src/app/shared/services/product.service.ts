@@ -51,8 +51,9 @@ export class ProductService {
     }));
   }
 
-  getAllProducts():  Observable<Product[]>{
-    return this.http.get('products/list').pipe(map((res: any)=>res.data));
+  getAllProducts(per_page?: number, current_page?: number){
+    const params = per_page && current_page ? `?per_page=${per_page}&current_page=${current_page}`: ''
+    return this.http.get(`products/list${params}`);
   }
 
   getProductById(id:string):  Observable<Product>{
@@ -303,7 +304,7 @@ export class ProductService {
     ------------- Product Pagination  -----------
     ---------------------------------------------
   */
-  public getPager(totalItems: number, currentPage: number = 1, pageSize: number = 16) {
+  public getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10) {
     // calculate total pages
     let totalPages = Math.ceil(totalItems / pageSize);
 

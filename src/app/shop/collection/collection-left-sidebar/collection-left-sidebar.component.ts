@@ -18,6 +18,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public maxPrice: number = 1200;
   public category: string;
   public pageNo: number = 1;
+  public pageSize: number = 8;
   public paginate: any = {}; // Pagination use only
   public sortBy: string; // Sorting Order
   public mobileSidebar: boolean = false;
@@ -33,8 +34,11 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.sortBy = params.sortBy ? params.sortBy : 'ascending';
         this.pageNo = params.page ? params.page : this.pageNo;
 
-        this.productService.getAllProducts().subscribe(response => { 
-          this.products = response
+        this.productService.getAllProducts(this.pageSize, this.pageNo).subscribe((response:any) => { 
+          this.products = response.data;
+          this.paginate = this.productService.getPager(response.meta.count, +this.pageNo, this.pageSize); 
+          console.log(this.paginate);
+          
         })
 
         // // Get Filtered Products..
@@ -48,7 +52,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
         //   this.products = this.products.filter(item => item.price >= this.minPrice && item.price <= this.maxPrice) 
         //   // Paginate Products
         //   this.paginate = this.productService.getPager(this.products.length, +this.pageNo);     // get paginate object from service
-        //   this.products = this.products.slice(this.paginate.startIndex, this.paginate.endIndex + 1); // get current page of items
+          this.products = this.products.slice(this.paginate.startIndex, this.paginate.endIndex + 1); // get current page of items
         // })
       })
   }
