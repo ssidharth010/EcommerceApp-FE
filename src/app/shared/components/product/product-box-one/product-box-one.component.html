@@ -8,14 +8,14 @@
       <a [routerLink]="['/product/detail/', product._id]">
         <img 
           [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'" 
-          [lazyLoad]="ImageSrc ? ImageSrc : product.image" 
+          [lazyLoad]="ImageSrc ? ImageSrc : product.images[0]" 
           class="img-fluid lazy-loading" 
-          alt="{{ product.image }}" />
+          alt="'image'" />
       </a>
     </div>
     <div class="back" *ngIf="onHowerChangeImage">
       <a [routerLink]="['/product/detail/', product._id]">
-        <img [src]="ImageSrc ? ImageSrc : product.image" class="img-fluid lazy-loading" alt="image">
+        <img [src]="ImageSrc ? ImageSrc : product.images[0]" class="img-fluid lazy-loading" alt="image">
       </a>
     </div>
     <ul class="product-thumb-list" *ngIf="thumbnail">

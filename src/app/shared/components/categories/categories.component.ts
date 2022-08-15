@@ -20,7 +20,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   get filterbyCategory() {
-    const category = []
+    const category = ['A', 'B']
     return category
   }
 

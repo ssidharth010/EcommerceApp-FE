@@ -19,6 +19,7 @@ import { CartComponent } from './cart/cart.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
+import { FaqComponent } from '../pages/faq/faq.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { SuccessComponent } from './checkout/success/success.component';
     CartComponent,
     WishlistComponent,
     CheckoutComponent,
-    SuccessComponent
+    SuccessComponent,
+    FaqComponent
   ],
   imports: [
     CommonModule,

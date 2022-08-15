@@ -10,6 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 
 import { Resolver } from '../shared/services/resolver.service';
+import { FaqComponent } from '../pages/faq/faq.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
     resolve: {
       data: Resolver
     }
+  },  
+  {
+    path: 'detail/:slug/more-details',
+    component: FaqComponent
   },
   {
     path: 'list',

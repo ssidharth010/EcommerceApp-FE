@@ -18,13 +18,15 @@
             <div class="row">
               <div class="col-lg-6">
                 <owl-carousel-o [options]="ProductDetailsMainSliderConfig" #owlCar  class="product-slick">
-                        <ng-template carouselSlide [id]="product._id">
-                            <div>
-                              <img [defaultImage]="'assets/images/product/placeholder.jpg'" 
-                                   [lazyLoad]="product.image" 
-                                   [alt]="product.image" class="img-fluid">
-                            </div>
-                        </ng-template>
+                        <ng-container *ngFor="let image of product?.images; index as i">
+                          <ng-template carouselSlide [id]="i">
+                              <div>
+                                <img [defaultImage]="'assets/images/product/placeholder.jpg'" 
+                                     [lazyLoad]="image" 
+                                     [alt]="'image'" class="img-fluid">
+                              </div>
+                          </ng-template>
+                      </ng-container>
                 </owl-carousel-o>
                 <!-- <div class="col-12 p-0" *ngIf="product?.images.length > 1">
                     <div class="slider-nav">
@@ -72,6 +74,7 @@
                   <div class="product-buttons">
                     <!-- <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock" (click)="addToCart(product)">add to cart</a>
                     <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="counter > product.stock" (click)="enquire(product)">Enquire</a> -->
+                    <a class="btn btn-solid" [class.disabled]="false" [routerLink]="['more-details']">More Detail</a>
                     <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="false" (click)="addToCart(product)">add to cart</a>
                     <a href="javascrip:void(0)" class="btn btn-solid" [class.disabled]="false" (click)="enquire(product)">Enquire</a>
                   </div>

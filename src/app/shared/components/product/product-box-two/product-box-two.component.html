@@ -6,7 +6,7 @@
 	<div class="front">
         <a [routerLink]="['/product/detail/', product._id]">
             <img [defaultImage]="ImageSrc ? ImageSrc : 'assets/images/product/placeholder.jpg'" 
-                 [lazyLoad]="ImageSrc ? ImageSrc : product.image" 
+                 [lazyLoad]="ImageSrc ? ImageSrc : product.images[0]" 
                  class="img-fluid lazy-loading" alt="">
         </a>
 	</div>
