@@ -15,7 +15,7 @@ export class FaqComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('slug');
     this.productService.getProductById(id).subscribe((res: any)=>{
-      this.details = [res.details]
+      this.details = res.details
     })
   }
 

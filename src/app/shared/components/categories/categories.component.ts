@@ -9,19 +9,13 @@ import { ProductService } from '../../services/product.service';
 })
 export class CategoriesComponent implements OnInit {
 
-  public products: Product[] = [];
+  public categories: any = [];
   public collapse: boolean = true;
 
-  constructor(public productService: ProductService) { 
-    // this.productService.getProducts.subscribe(product => this.products = product);
+  constructor(public productService: ProductService) {
+    this.productService.getAllCategories().subscribe((res: any) => this.categories = res.data)
   }
 
   ngOnInit(): void {
   }
-
-  get filterbyCategory() {
-    const category = ['A', 'B']
-    return category
-  }
-
 }

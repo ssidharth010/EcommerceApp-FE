@@ -51,13 +51,20 @@ export class ProductService {
     }));
   }
 
-  getAllProducts(per_page?: number, current_page?: number){
-    const params = per_page && current_page ? `?per_page=${per_page}&current_page=${current_page}`: ''
+  getAllProducts(per_page?: number, current_page?: number, category?: string, minPrice?: number, maxPrice?: number){
+    let params = per_page && current_page ? `?per_page=${per_page}&current_page=${current_page}`: '';
+    params = category ? `${params}&category=${category}`: params;
+    params = maxPrice && minPrice ? `${params}&maxPrice=${maxPrice}&minPrice=${minPrice}`: params;
     return this.http.get(`products/list${params}`);
   }
 
   getProductById(id:string):  Observable<Product>{
     return this.http.get(`products/${id}`).pipe(map((res: any)=>res.data));
+  }
+
+  getAllCategories(per_page?: number, current_page?: number){
+    const params = per_page && current_page ? `?per_page=${per_page}&current_page=${current_page}`: ''
+    return this.http.get(`categories/list${params}`);
   }
 
   // Enquiry

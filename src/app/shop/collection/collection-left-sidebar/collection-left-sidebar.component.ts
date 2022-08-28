@@ -34,7 +34,7 @@ export class CollectionLeftSidebarComponent implements OnInit {
         this.sortBy = params.sortBy ? params.sortBy : 'ascending';
         this.pageNo = params.page ? params.page : this.pageNo;
 
-        this.productService.getAllProducts(this.pageSize, this.pageNo).subscribe((response:any) => { 
+        this.productService.getAllProducts(this.pageSize, this.pageNo, this.category, this.minPrice, this.maxPrice).subscribe((response:any) => { 
           this.products = response.data;
           this.paginate = this.productService.getPager(response.meta.count, +this.pageNo, this.pageSize); 
           console.log(this.paginate);

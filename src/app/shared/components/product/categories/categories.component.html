@@ -1,0 +1,15 @@
+<div *ngIf="!loader">
+  <div class="img-wrapper">
+    <!-- <div class="lable-block">
+      <span class="lable3" *ngIf="product.new">new</span>
+      <span class="lable4" *ngIf="product.sale">on sale</span>
+    </div> -->
+    <div class="front">
+      <a [routerLink]="['/product/list']" [queryParams]="{category: category._id }">
+        <div class="name-card">{{category.name}}</div>
+      </a>
+    </div>
+  </div>
+</div>
+<app-skeleton-product-box *ngIf="loader"></app-skeleton-product-box>
+
