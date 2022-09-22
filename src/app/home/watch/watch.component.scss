@@ -2,3 +2,13 @@
     text-align: center;
     padding: 40px;
 }
+
+::ng-deep .owl-carousel .owl-item img {
+    margin: auto;
+    max-width: 300px;
+}
+
+::ng-deep .owl-carousel .owl-item .name-card {
+    max-width: 300px;
+    margin: auto;
+}

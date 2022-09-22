@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ProductService } from "../../services/product.service";
 import { Product } from "../../classes/product";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -13,35 +14,10 @@ export class SettingsComponent implements OnInit {
 
   public products: Product[] = [];
   public search: boolean = false;
-  
-  public languages = [{ 
-    name: 'English',
-    code: 'en'
-  }, {
-    name: 'French',
-    code: 'fr'
-  }];
-
-  public currencies = [{
-    name: 'Euro',
-    currency: 'EUR',
-    price: 0.90 // price of euro
-  }, {
-    name: 'Rupees',
-    currency: 'INR',
-    price: 70.93 // price of inr
-  }, {
-    name: 'Pound',
-    currency: 'GBP',
-    price: 0.78 // price of euro
-  }, {
-    name: 'Dollar',
-    currency: 'USD',
-    price: 1 // price of usd
-  }]
+  searchInput: string;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
-    public productService: ProductService) {
+    public productService: ProductService, private router: Router) {
     this.productService.cartItems.subscribe(response => this.products = response);
   }
 
@@ -60,8 +36,12 @@ export class SettingsComponent implements OnInit {
     this.productService.removeCartItem(product);
   }
 
-  changeCurrency(currency: any) {
-    this.productService.Currency = currency
+  searchProduct(){
+    console.log(this.searchInput)
+    this.router.navigate([], { 
+      queryParams: { search: this.searchInput }
+    })
+    this.searchToggle()
   }
 
 }

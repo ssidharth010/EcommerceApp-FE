@@ -48,7 +48,7 @@
       </a>
       <p>{{ product?.description }}</p>
       <h4>
-        {{ product?.price * currency?.price | discount:product | currency:currency?.currency:'symbol' }}
+        ₹ {{ product?.price }}
       </h4>
     </div>
   </div>

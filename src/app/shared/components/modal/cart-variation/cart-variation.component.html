@@ -40,7 +40,7 @@
                     <div class="total">
                         <h5>
                             subtotal :
-                            <span>{{ getTotal | async | currency:productService?.Currency.currency:'symbol' }}</span>
+                            <span>₹ {{ getTotal | async }}</span>
                         </h5>
                     </div>
                 </li>

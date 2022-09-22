@@ -43,6 +43,7 @@ import { TapToTopComponent } from './components/tap-to-top/tap-to-top.component'
 // Pipes
 import { DiscountPipe } from './pipes/discount.pipe';
 import { CategoriesBoxComponent } from './components/product/categories/categories.component';
+import { SubCategoriesComponent } from './components/sub-categories/sub-categories.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { CategoriesBoxComponent } from './components/product/categories/categori
     SettingsComponent,
     BreadcrumbComponent,
     CategoriesComponent,
+    SubCategoriesComponent,
     ProductBoxOneComponent,
     ProductBoxTwoComponent,
     CategoriesBoxComponent,
@@ -96,6 +98,7 @@ import { CategoriesBoxComponent } from './components/product/categories/categori
     FooterOneComponent,
     BreadcrumbComponent,
     CategoriesComponent,
+    SubCategoriesComponent,
     ProductBoxOneComponent,
     ProductBoxTwoComponent,
     CategoriesBoxComponent,
