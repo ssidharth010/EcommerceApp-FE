@@ -20,6 +20,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { SuccessComponent } from './checkout/success/success.component';
 import { FaqComponent } from '../pages/faq/faq.component';
+import { RelatedProductComponent } from './product/widgets/related-product/related-product.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { FaqComponent } from '../pages/faq/faq.component';
     WishlistComponent,
     CheckoutComponent,
     SuccessComponent,
-    FaqComponent
+    FaqComponent,
+    RelatedProductComponent
   ],
   imports: [
     CommonModule,
