@@ -14,7 +14,7 @@
                                 </span>
                             </div>
                             <app-categories></app-categories>
-                            <app-sub-categories></app-sub-categories>
+                            <app-sub-categories *ngIf="category" [subCategories] ="subcategoryList"></app-sub-categories>
                         </div>
                         <div class="collection-filter-block">
                             <app-price [min]="minPrice" [max]="maxPrice" (priceFilter)="updateFilter($event)">

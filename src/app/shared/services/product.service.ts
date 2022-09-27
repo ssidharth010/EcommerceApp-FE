@@ -51,9 +51,11 @@ export class ProductService {
     }));
   }
 
-  getAllProducts(per_page?: number, current_page?: number, category?: string, minPrice?: number, maxPrice?: number){
+  getAllProducts(per_page?: number, current_page?: number, category?: string, subcategory?: string, minPrice?: number, maxPrice?: number, search?: string){
     let params = per_page && current_page ? `?per_page=${per_page}&current_page=${current_page}`: '';
+    params = search ? `${params}&search=${search}`: params;
     params = category ? `${params}&category=${category}`: params;
+    params = subcategory ? `${params}&subcategory=${subcategory}`: params;
     params = maxPrice && minPrice ? `${params}&maxPrice=${maxPrice}&minPrice=${minPrice}`: params;
     return this.http.get(`products/list${params}`);
   }
@@ -356,6 +358,11 @@ export class ProductService {
       endIndex: endIndex,
       pages: pages
     };
+  }
+
+
+  getSubCategByCategId(category__id:string){
+    return this.http.get(`subcategories/list/${category__id}`);
   }
 
 }

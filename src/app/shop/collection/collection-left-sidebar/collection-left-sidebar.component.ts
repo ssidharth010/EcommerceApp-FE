@@ -17,28 +17,36 @@ export class CollectionLeftSidebarComponent implements OnInit {
   public minPrice: number = 0;
   public maxPrice: number = 1200;
   public category: string;
+  public subcategory: string;
   public pageNo: number = 1;
   public pageSize: number = 8;
   public paginate: any = {}; // Pagination use only
   public sortBy: string; // Sorting Order
   public mobileSidebar: boolean = false;
   public loader: boolean = true;
+  public subcategoryList: any[] = [];
+  public search: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
     private viewScroller: ViewportScroller, public productService: ProductService) {   
       // Get Query params..
       this.route.queryParams.subscribe(params => {
+        this.search = params.search ? params.search : null;
         this.minPrice = params.minPrice ? params.minPrice : this.minPrice;
         this.maxPrice = params.maxPrice ? params.maxPrice : this.maxPrice;
         this.category = params.category ? params.category : null;
+        this.subcategory = params.subcategory ? params.subcategory : null;
         this.sortBy = params.sortBy ? params.sortBy : 'ascending';
         this.pageNo = params.page ? params.page : this.pageNo;
 
-        this.productService.getAllProducts(this.pageSize, this.pageNo, this.category, this.minPrice, this.maxPrice).subscribe((response:any) => { 
+
+        if(this.category){
+          this.productService.getSubCategByCategId(this.category).subscribe((res:any)=>{ this.subcategoryList = res.data})
+        }
+
+        this.productService.getAllProducts(this.pageSize, this.pageNo, this.category, this.subcategory, this.minPrice, this.maxPrice, this.search).subscribe((response:any) => { 
           this.products = response.data;
-          this.paginate = this.productService.getPager(response.meta.count, +this.pageNo, this.pageSize); 
-          console.log(this.paginate);
-          
+          this.paginate = this.productService.getPager(response.meta.count, +this.pageNo, this.pageSize);         
         })
 
         // // Get Filtered Products..

@@ -6,7 +6,7 @@
             <ul class="category-list">
                 <li *ngFor="let subCategory of subCategories">
                     <a [routerLink]="['/product/list']"
-                       [queryParams]="{ subcategory: subCategory._id}">
+                       [queryParams]="{ category: subCategory.category_id, subcategory: subCategory._id}">
                         {{ subCategory.name }}
                     </a>
                 </li>

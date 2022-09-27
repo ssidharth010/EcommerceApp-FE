@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../classes/product';
 import { ProductService } from '../../services/product.service';
 
@@ -9,14 +9,10 @@ import { ProductService } from '../../services/product.service';
 })
 export class SubCategoriesComponent implements OnInit {
 
-  public subCategories: any = [{
-    name: 'ddd',
-    _id: '1212121212'
-  }];
+  @Input() subCategories: Array<any>;
   public collapse: boolean = true;
 
   constructor(public productService: ProductService) {
-    // this.productService.getAllCategories().subscribe((res: any) => this.subCategories = res.data)
   }
 
   ngOnInit(): void {
