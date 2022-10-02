@@ -18,6 +18,7 @@ export interface Product {
     variants?: Variants[];
     images?: Images[];
     image?: Images;
+    more?: any[]
 }
 
 export interface Variants {
