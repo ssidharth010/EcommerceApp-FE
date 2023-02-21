@@ -19,11 +19,11 @@ const routes: Routes = [
     component: ShopComponent,
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
   },
-  // { 
-  //   path: 'pages',
-  //   component: PagesComponent,
-  //   loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) 
-  // },
+  { 
+    path: 'page',
+    component: PagesComponent,
+    loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) 
+  },
   {
     path: '**', // Navigate to Home Page if not found any page
     redirectTo: 'home',
