@@ -22,13 +22,13 @@
               <li class="onhover-dropdown mobile-account">
                 <i class="fa fa-user" aria-hidden="true"></i> My Account
                 <ul class="onhover-show-div">
-                  <li>
+                  <li *ngIf="!loggedIn">
                     <a data-lng="en" routerLink="/page/login">
                       Login
                     </a>
                   </li>
                   <li>
-                    <a data-lng="es">
+                    <a data-lng="es" (click)="logout()">
                       Logout
                     </a>
                   </li>

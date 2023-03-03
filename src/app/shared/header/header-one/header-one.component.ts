@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header-one',
@@ -11,12 +12,20 @@ export class HeaderOneComponent implements OnInit {
   @Input() themeLogo: string = 'assets/images/icon/logo.png'; // Default Logo
   @Input() topbar: boolean = true; // Default True
   @Input() sticky: boolean = false; // Default false
-  
+  loggedIn: boolean = false;
+
   public stick: boolean = false;
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+    const currentUser = this.authService.currentUserValue;
+    this.loggedIn = currentUser && currentUser.token;    
+   }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    this.authService.logout().subscribe(res=>localStorage.removeItem('currentUser'))
   }
 
   // @HostListener Decorator

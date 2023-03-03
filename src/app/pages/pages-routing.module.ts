@@ -4,10 +4,12 @@ import { ContactComponent } from './account/contact/contact.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { LoginGuard } from '../shared/guards/login.guard';
 
 const routes: Routes = [
   { 
     path: 'login', 
+    canActivate: [LoginGuard],
     component: LoginComponent 
   },
   { 
