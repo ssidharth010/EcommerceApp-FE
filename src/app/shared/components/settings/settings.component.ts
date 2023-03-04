@@ -37,7 +37,6 @@ export class SettingsComponent implements OnInit {
   }
 
   searchProduct(){
-    console.log(this.searchInput)
     this.router.navigate(['/product/list'], { 
       queryParams: { search: this.searchInput }
     })

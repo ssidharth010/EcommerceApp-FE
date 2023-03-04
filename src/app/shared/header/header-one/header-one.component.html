@@ -27,7 +27,7 @@
                       Login
                     </a>
                   </li>
-                  <li>
+                  <li *ngIf="loggedIn">
                     <a data-lng="es" (click)="logout()">
                       Logout
                     </a>
