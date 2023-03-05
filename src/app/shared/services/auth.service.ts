@@ -16,6 +16,10 @@ export class AuthService {
         return this.http.post<any>('auth/login', {email: email, password: password}).pipe(map((res: any) => res.data));
     }
 
+    createAccount(details): Observable<any> {
+        return this.http.post<any>('user/customer/add', details).pipe(map((res: any) => res.data));
+    }
+
     logout(): Observable<any> {
         return this.http.post<any>('auth/logout',{}).pipe(map((res: any) => res.data));
     }

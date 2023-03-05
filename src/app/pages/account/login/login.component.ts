@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -14,11 +15,10 @@ export class LoginComponent implements OnInit {
       Validators.email, Validators.required]),
     password: new FormControl('',[
       Validators.minLength(8), Validators.required])
-});
-  constructor(private authService: AuthService, private _router: Router) { }
+  });
+  constructor(private authService: AuthService, private _router: Router,private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    console.log(this.loginForm)
   }
 
   login(){
@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(res=>{
         // this.loginForm.value.error;
         localStorage.setItem('currentUser', JSON.stringify(res))
-        this._router.navigate(['/app/home'])
+        this._router.navigate(['/home'])
+      }, error =>{
+        this.toastrService.error('Incorrect Credentials');
       })
     }
   }

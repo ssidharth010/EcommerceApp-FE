@@ -64,6 +64,10 @@ export class ProductService {
     return this.http.get(`products/${id}`).pipe(map((res: any)=>res.data));
   }
 
+  getCart(){
+    return this.http.get(`user/customer/cart`);
+  }
+
   getAllCategories(per_page?: number, current_page?: number){
     const params = per_page && current_page ? `?per_page=${per_page}&current_page=${current_page}`: ''
     return this.http.get(`categories/list${params}`);
