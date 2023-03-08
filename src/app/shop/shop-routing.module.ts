@@ -11,6 +11,7 @@ import { SuccessComponent } from './checkout/success/success.component';
 
 import { Resolver } from '../shared/services/resolver.service';
 import { FaqComponent } from '../pages/faq/faq.component';
+import { AuthGuard } from '../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'cart',
+    canActivate: [AuthGuard],
     component: CartComponent
   },
   {
@@ -38,6 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'enquire',
+    canActivate: [AuthGuard],
     component: CheckoutComponent
   },
   {

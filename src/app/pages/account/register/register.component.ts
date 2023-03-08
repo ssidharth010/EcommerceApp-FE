@@ -25,12 +25,11 @@ export class RegisterComponent implements OnInit {
 
   createAcc(){
     if(this.regForm.valid){
-      console.log(this.regForm)
-      // this.authService.createAccount(this.regForm.value).subscribe(res=>{
-      //   this._router.navigate(['/page/login'])
-      // }, error =>{
-      //   this.toastrService.error('Email already exist');
-      // })
+      this.authService.createAccount(this.regForm.value).subscribe(res=>{
+        this._router.navigate(['/page/login'])
+      }, error =>{
+        this.toastrService.error('Email already exist');
+      })
     }
   }
 }
