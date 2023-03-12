@@ -1,0 +1,33 @@
+-> Change theme color
+
+	Go to src > assets > scsss > app.scss then change --theme-default color
+
+-> Change banner
+
+	Go to then src > app > home > watch > watch.comp.ts then go line 33, change sliders variable values
+
+-> Change theme color and logo
+	
+	to change theme color replace --theme-deafult value in app.scss file
+	to change logo replace => assets/images/icon/logo.png
+
+API LIST
+
+Base url
+localhost:3000/v1/
+
+add categ
+== /categories/add - post
+	data is form data
+	{name: '', image:file}
+
+add sub categ
+== /subcategories/add
+
+	data is json
+	{
+	  "name": "Sub Category-C",
+	  "category_id": "63313671153ac6762ed11476"
+	}
+
+
