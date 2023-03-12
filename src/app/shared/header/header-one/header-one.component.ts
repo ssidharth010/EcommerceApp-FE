@@ -7,7 +7,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./header-one.component.scss']
 })
 export class HeaderOneComponent implements OnInit {
-  
+
   @Input() class: string;
   @Input() themeLogo: string = 'assets/images/icon/logo.png'; // Default Logo
   @Input() topbar: boolean = true; // Default True
@@ -18,25 +18,30 @@ export class HeaderOneComponent implements OnInit {
 
   constructor(private authService: AuthService) {
     const currentUser = this.authService.currentUserValue;
-    this.loggedIn = currentUser && currentUser.token;    
-   }
+    this.loggedIn = currentUser && currentUser.token;
+  }
 
   ngOnInit(): void {
   }
 
-  logout(){
-    this.authService.logout().subscribe(res=>localStorage.removeItem('currentUser'))
+  logout() {
+    this.authService.logout().subscribe(res => {
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('cartItems');
+      window.location.reload()
+    }
+    );
   }
 
   // @HostListener Decorator
   @HostListener("window:scroll", [])
   onWindowScroll() {
     let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-  	if (number >= 150 && window.innerWidth > 400) { 
-  	  this.stick = true;
-  	} else {
-  	  this.stick = false;
-  	}
+    if (number >= 150 && window.innerWidth > 400) {
+      this.stick = true;
+    } else {
+      this.stick = false;
+    }
   }
 
 }

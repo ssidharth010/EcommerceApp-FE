@@ -4,6 +4,7 @@ import { ProductDetailsMainSlider, ProductDetailsThumbSlider } from '../../../..
 import { Product } from '../../../../shared/classes/product';
 import { ProductService } from '../../../../shared/services/product.service';
 import { SizeModalComponent } from "../../../../shared/components/modal/size-modal/size-modal.component";
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-product-left-sidebar',
@@ -24,7 +25,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   public ProductDetailsThumbConfig: any = ProductDetailsThumbSlider;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    public productService: ProductService) { 
+    public productService: ProductService, private authService: AuthService) { 
       this.route.data.subscribe(response => {
         this.product = response.data
         if(!this.product){
@@ -74,9 +75,13 @@ export class ProductLeftSidebarComponent implements OnInit {
 
   // Add to cart
   addToCart(product: any) {
-    product.quantity = this.counter || 1;
-    this.productService.addToCart(product);
-    this.router.navigate(['/product/cart']);
+    const currentUser = this.authService.currentUserValue;
+    const isLoggedIn = currentUser && currentUser.token;
+    if (isLoggedIn) {
+      product.quantity = this.counter || 1;
+      this.productService.addToCart(product);
+      this.router.navigate(['/product/cart']);
+    }
   }
 
   // Buy Now

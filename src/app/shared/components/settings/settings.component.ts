@@ -26,9 +26,9 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.loggedIn){
-      this.productService.getCart().subscribe(res => console.log(res))
-    }
+    // if(this.loggedIn){
+    //   this.productService.getCart().subscribe(res => console.log(res))
+    // }
   }
 
   searchToggle() {

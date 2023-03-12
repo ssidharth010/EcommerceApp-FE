@@ -186,9 +186,15 @@ export class ProductService {
     }
 
     this.OpenCart = true; // If we use cart variation modal
-    localStorage.setItem("cartItems", JSON.stringify(state.cart));
-    this.toastrService.success('Product has been added to cart.');
+    this.addToCartServer().subscribe(res=>{
+      this.toastrService.success('Product has been added to cart.');
+      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    })
     return true;
+  }
+
+  addToCartServer():  Observable<Product>{
+    return this.http.put(`user/update/cart`, { cart_items : JSON.stringify(state.cart) })
   }
 
   // Update Cart Quantity
@@ -200,7 +206,10 @@ export class ProductService {
         if (qty !== 0 && stock) {
           state.cart[index].quantity = qty
         }
-        localStorage.setItem("cartItems", JSON.stringify(state.cart));
+        this.addToCartServer().subscribe(res=>{
+          this.toastrService.success('Vart Updated');
+          localStorage.setItem("cartItems", JSON.stringify(state.cart));
+        })
         return true
       }
     })
@@ -221,7 +230,10 @@ export class ProductService {
   public removeCartItem(product: Product): any {
     const index = state.cart.indexOf(product);
     state.cart.splice(index, 1);
-    localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    this.addToCartServer().subscribe(res=>{
+      this.toastrService.success('Cart Updated');
+      localStorage.setItem("cartItems", JSON.stringify(state.cart));
+    })
     return true
   }
 
