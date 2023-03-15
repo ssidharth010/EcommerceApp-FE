@@ -6,6 +6,7 @@ import { Product } from "../../shared/classes/product";
 import { ProductService } from "../../shared/services/product.service";
 import { OrderService } from "../../shared/services/order.service";
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-checkout',
@@ -22,17 +23,16 @@ export class CheckoutComponent implements OnInit {
   constructor(private fb: FormBuilder,
     public productService: ProductService,
     private orderService: OrderService,
-    private toastrService: ToastrService) { 
+    private toastrService: ToastrService,
+    private authService: AuthService) {
+
+    const currentUser = this.authService.currentUserValue;
     this.checkoutForm = this.fb.group({
-      firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
-      lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      firstname: [currentUser.first_name, [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
+      lastname: [currentUser.last_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
-      email: ['', [Validators.required, Validators.email]],
+      email: [currentUser.email, [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
-      // country: ['', Validators.required],
-      // town: ['', Validators.required],
-      // state: ['', Validators.required],
-      // postalcode: ['', Validators.required]
     })
   }
 

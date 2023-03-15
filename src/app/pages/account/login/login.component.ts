@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(res=>{
         // this.loginForm.value.error;
         localStorage.setItem('currentUser', JSON.stringify(res))
-        localStorage.setItem("cartItems", res.cart_items);
+        localStorage.setItem("cartItems", res.cart_items?res.cart_items: '[]');
         this._router.navigate(['/home']).then(() => {
           window.location.reload();
         });

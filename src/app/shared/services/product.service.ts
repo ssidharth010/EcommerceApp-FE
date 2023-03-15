@@ -207,7 +207,7 @@ export class ProductService {
           state.cart[index].quantity = qty
         }
         this.addToCartServer().subscribe(res=>{
-          this.toastrService.success('Vart Updated');
+          this.toastrService.success('Cart Updated');
           localStorage.setItem("cartItems", JSON.stringify(state.cart));
         })
         return true
