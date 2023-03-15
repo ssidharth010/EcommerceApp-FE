@@ -57,10 +57,12 @@ export class CheckoutComponent implements OnInit {
       phone: formValues.phone,
       product_ids: selectedProdIds
     }
-    this.productService.submitEnquiry(data).subscribe(res=>{
-      localStorage.setItem("cartItems", JSON.stringify([]))
-      this.toastrService.success('Enquiry Submitted');
-    })
+    if(this.checkoutForm.valid){
+      this.productService.submitEnquiry(data).subscribe(res=>{
+        localStorage.setItem("cartItems", JSON.stringify([]))
+        this.toastrService.success('Enquiry Submitted');
+      })
+    }
   }
 
   private initConfig(): void {
