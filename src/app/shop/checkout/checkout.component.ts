@@ -7,6 +7,7 @@ import { ProductService } from "../../shared/services/product.service";
 import { OrderService } from "../../shared/services/order.service";
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -24,7 +25,8 @@ export class CheckoutComponent implements OnInit {
     public productService: ProductService,
     private orderService: OrderService,
     private toastrService: ToastrService,
-    private authService: AuthService) {
+    private authService: AuthService, 
+    private _router: Router) {
 
     const currentUser = this.authService.currentUserValue;
     this.checkoutForm = this.fb.group({
@@ -61,6 +63,9 @@ export class CheckoutComponent implements OnInit {
       this.productService.submitEnquiry(data).subscribe(res=>{
         localStorage.setItem("cartItems", JSON.stringify([]))
         this.toastrService.success('Enquiry Submitted');
+        this._router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       })
     }
   }

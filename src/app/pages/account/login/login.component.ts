@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.loginForm.markAllAsTouched();
     if(this.loginForm.valid){
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(res=>{
         // this.loginForm.value.error;

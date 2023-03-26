@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createAcc(){
+    this.regForm.markAllAsTouched();
     if(this.regForm.valid){
       this.authService.createAccount(this.regForm.value).subscribe(res=>{
         this._router.navigate(['/page/login'])
