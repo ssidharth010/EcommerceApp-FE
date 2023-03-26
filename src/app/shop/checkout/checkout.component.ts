@@ -32,7 +32,7 @@ export class CheckoutComponent implements OnInit {
     this.checkoutForm = this.fb.group({
       firstname: [currentUser.first_name, [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+[a-zA-Z]$')]],
       lastname: [currentUser.last_name, [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      phone: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+      phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern('[0-9]+')]],
       email: [currentUser.email, [Validators.required, Validators.email]],
       address: ['', [Validators.required, Validators.maxLength(50)]],
     })
@@ -49,6 +49,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   submitEnquiry(){
+    console.log(this.checkoutForm)
     const selectedProdIds = this.products.map(product=> product._id);
     const formValues = this.checkoutForm.value
     const data = {
@@ -59,6 +60,7 @@ export class CheckoutComponent implements OnInit {
       phone: formValues.phone,
       product_ids: selectedProdIds
     }
+    this.checkoutForm.markAllAsTouched()
     if(this.checkoutForm.valid){
       this.productService.submitEnquiry(data).subscribe(res=>{
         localStorage.setItem("cartItems", JSON.stringify([]))
