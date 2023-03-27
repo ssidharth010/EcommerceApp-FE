@@ -47,6 +47,7 @@ export class SettingsComponent implements OnInit {
     this.router.navigate(['/product/list'], {
       queryParams: { search: this.searchInput }
     })
+    this.searchInput = '';
     this.searchToggle()
   }
 
