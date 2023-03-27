@@ -27,7 +27,7 @@ export class TapToTopComponent implements OnInit {
   }
 
   tapToTop() {
-  	this.viewScroller.scrollToPosition([0, 0]);
+  	// this.viewScroller.scrollToPosition([0, 0]);
   }
 
 }

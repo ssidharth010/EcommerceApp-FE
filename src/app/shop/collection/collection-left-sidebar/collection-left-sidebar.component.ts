@@ -78,8 +78,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
       queryParamsHandling: 'merge', // preserve the existing query params in the route
       skipLocationChange: false  // do trigger navigation
     }).finally(() => {
-      this.viewScroller.setOffset([120, 120]);
-      this.viewScroller.scrollToAnchor('products'); // Anchore Link
+      // this.viewScroller.setOffset([120, 120]);
+      // this.viewScroller.scrollToAnchor('products'); // Anchore Link
     });
   }
 
@@ -91,8 +91,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
       queryParamsHandling: 'merge', // preserve the existing query params in the route
       skipLocationChange: false  // do trigger navigation
     }).finally(() => {
-      this.viewScroller.setOffset([120, 120]);
-      this.viewScroller.scrollToAnchor('products'); // Anchore Link
+      // this.viewScroller.setOffset([120, 120]);
+      // this.viewScroller.scrollToAnchor('products'); // Anchore Link
     });
   }
 
@@ -104,8 +104,8 @@ export class CollectionLeftSidebarComponent implements OnInit {
       queryParamsHandling: 'merge', // preserve the existing query params in the route
       skipLocationChange: false  // do trigger navigation
     }).finally(() => {
-      this.viewScroller.setOffset([120, 120]);
-      this.viewScroller.scrollToAnchor('products'); // Anchore Link
+      // this.viewScroller.setOffset([120, 120]);
+      // this.viewScroller.scrollToAnchor('products'); // Anchore Link
     });
   }
 
