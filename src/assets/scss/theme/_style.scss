@@ -7432,7 +7432,7 @@ footer {
     .btn-link {
         color: $dark-font;
         &:hover {
-            text-decoration: none;
+            text-decoration: none !important;
         }
     }
     .card {
