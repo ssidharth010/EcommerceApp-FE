@@ -1,0 +1,21 @@
+.faq-section {
+    min-height: calc(100vh - 576px);
+}
+
+@media screen and (max-width: 991px) {
+    .faq-section {
+        min-height: calc(100vh - 535px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .faq-section {
+        min-height: calc(100vh - 645px);
+    }
+}
+
+@media screen and (max-width: 577px) {
+    .faq-section {
+        min-height: calc(100vh - 593px);
+    }
+}

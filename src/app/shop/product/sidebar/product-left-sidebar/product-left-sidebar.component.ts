@@ -81,6 +81,8 @@ export class ProductLeftSidebarComponent implements OnInit {
       product.quantity = this.counter || 1;
       this.productService.addToCart(product);
       this.router.navigate(['/product/cart']);
+    } else {
+      this.router.navigate(['/page/login']);
     }
   }
 
