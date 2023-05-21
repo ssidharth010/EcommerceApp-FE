@@ -16,16 +16,12 @@
                         <span></span>
                     </div>
                 </div>
-                <owl-carousel-o [options]="ProductSliderConfig" class="product-4 product-m no-arrow">
-                    <ng-container *ngFor="let category of categories">
-                        <ng-template carouselSlide>
+                   <ng-container *ngFor="let category of categories">
                             <div class="product-box product-wrap">
                                 <app-categories-box [category]="category" [currency]="productService?.Currency">
                                 </app-categories-box>
                             </div>
-                        </ng-template>
                     </ng-container>
-                </owl-carousel-o>
             </div>
         </div>
     </div>
